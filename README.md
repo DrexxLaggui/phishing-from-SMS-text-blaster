@@ -44,6 +44,8 @@ The following frames are LTE control messages (NAS-EPS over GSMTAP) between my h
      2. Then sends an **Attach Reject** with **cause code 15** (“No suitable cells in tracking area”).
 
 
+---
+
      `$ tshark -r extracted/20251124a-PH-QCTY_1763879463.pcap -Y "frame.number==108677 || frame.number==108743 || frame.number==108812 || frame.number==108896" -T fields -e frame.number -e frame.time -e frame.time_epoch -e gsmtap.uplink -e frame.protocols`
 
 | frame.number | frame.time                              | frame.time_epoch       | gsmtap.uplink | frame.protocols                     |
@@ -53,6 +55,8 @@ The following frames are LTE control messages (NAS-EPS over GSMTAP) between my h
 | 108812      | 2025-11-24T15:05:23.602999000+0800       | 1763967923.602999000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
 | 108896      | 2025-11-24T15:06:25.064265000+0800       | 1763967985.064265000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
 
+
+---
 
 `$ tshark -r extracted/20251124a-PH-QCTY_1763879463.pcap -Y 'frame.number == 108896' -O nas-eps,lte-rrc,lte-rrc.bcch.bch,lte-rrc.bcch.dl-sch -V`
 
