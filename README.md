@@ -42,18 +42,17 @@ The following frames are LTE control messages (NAS-EPS over GSMTAP) between my h
         - **IMSI** (International Mobile Subscriber Identity  --  uniquely identifies the SIM/subscriber), or  
         - **IMEI** (International Mobile Equipment Identity  --  identifies the device hardware).   
      2. Then sends an **Attach Reject** with **cause code 15** (“No suitable cells in tracking area”).
-     3. $ tshark -r extracted/20251124a-PH-QCTY_1763879463.pcap -Y 'frame.number == 108896' -O nas-eps,lte-rrc,lte-rrc.bcch.bch,lte-rrc.bcch.dl-sch  -V 
-        Frame 108896: Packet, 61 bytes on wire (488 bits), 61 bytes captured (488 bits)
-        Ethernet II, Src: 00:00:00_00:00:00 (00:00:00:00:00:00), Dst: 00:00:00_00:00:00 (00:00:00:00:00:00)
-        Internet Protocol Version 4, Src: localhost (127.0.0.1), Dst: localhost (127.0.0.1)
-        User Datagram Protocol, Src Port: 13337 (13337), Dst Port: gsmtap (4729)
-        GSM TAP Header, ARFCN: 0 (Downlink), TS: 0, Channel: UNKNOWN (0)
-        Non-Access-Stratum (NAS)PDU
-          0000 .... = Security header type: Plain NAS message, not security protected (0)
-          .... 0111 = Protocol discriminator: EPS mobility management messages (0x7)
-          NAS EPS Mobility Management Message Type: Attach reject (0x44)
-          EMM cause
-            Cause: No Suitable Cells In tracking area (15)
+
+
+     `$ tshark -r extracted/20251124a-PH-QCTY_1763879463.pcap -Y "frame.number==108677 || frame.number==108743 || frame.number==108812 || frame.number==108896" -T fields -e frame.number -e frame.time -e frame.time_epoch -e gsmtap.uplink -e frame.protocols`
+
+| frame.number | frame.time                              | frame.time_epoch       | gsmtap.uplink | frame.protocols                     |
+|-------------|------------------------------------------|------------------------|---------------|-------------------------------------|
+| 108677      | 2025-11-24T15:04:30.162989000+0800       | 1763967870.162989000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
+| 108743      | 2025-11-24T15:04:56.723998000+0800       | 1763967896.723998000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
+| 108812      | 2025-11-24T15:05:23.602999000+0800       | 1763967923.602999000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
+| 108896      | 2025-11-24T15:06:25.064265000+0800       | 1763967985.064265000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
+
 
    - The end result:  
      - the device has already disclosed its permanent identity,  
