@@ -134,7 +134,7 @@ In plain language:
 
 ---
 
-<img width="1183" height="496" alt="20251124a-PH-QCTY_1763879463_OpenCellID--Timog-Ave" src="https://github.com/user-attachments/assets/b2c389c6-46a4-42b5-b37b-22cfc46fe55e" />
+<img width="1186" height="493" alt="20251124a-PH-QCTY_1763879463_OpenCellID--Timog-Ave" src="https://github.com/user-attachments/assets/7cd04aae-7171-4a82-b1ce-8943468054e9" />
 
 ## Known “Identity Harvesting” / IMSI-Catcher Pattern
 
