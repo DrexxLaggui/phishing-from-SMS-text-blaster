@@ -26,17 +26,17 @@ All times are local (UTC+8, Quezon City).
 
 The following frames are LTE control messages (NAS-EPS over GSMTAP) between my hotspot and a cell claiming to be part of a mobile network:
 
-1. **Frame 108677 — 15:04:30.162989**
+1. **Frame 108677  --  15:04:30.162989**
    - My device sends a **Service Request** to the network.
    - This message is **integrity-protected**, meaning it is cryptographically signed so the network can verify it is genuine and untampered.
    - In normal operation, the network should respond by authenticating the device (Authentication Request), setting up security (Security Mode Command), and then granting service.
 
-2. **Frame 108743 — 15:04:56.723998**  
-   3. **Frame 108812 — 15:05:23.602999**
+2. **Frame 108743  --  15:04:56.723998**  
+   3. **Frame 108812  --  15:05:23.602999**
    - The device sends **two more Service Requests**, again integrity-protected.
    - This shows the UE (my hotspot) is repeatedly asking for legitimate service in that cell.
 
-3. **Frame 108896 — 15:06:25.064265**
+3. **Frame 108896  --  15:06:25.064265**
    - Instead of continuing the normal attach/authentication procedure, the network:
      1. Sends a **plain (unprotected) Identity Request** — this is a downlink message asking the device to reveal a **permanent identifier**, such as:
         - **IMSI** (International Mobile Subscriber Identity  --  uniquely identifies the SIM/subscriber), or  
@@ -109,7 +109,7 @@ This allows the attacker to:
 - Build a list of device and subscriber identities present in a location at a given time.
 - Potentially cross-reference those identities with other data sources (e.g., customer databases, previous breaches, or SMS/voice marketing lists).
 
-The pattern recorded by Rayhunter — **Identity Request followed by immediate Attach Reject (cause 15), with no attempt to complete authentication or provide service** — is **consistent with this identity-harvesting behaviour**.
+The pattern recorded by Rayhunter -- **Identity Request followed by immediate Attach Reject (cause 15), with no attempt to complete authentication or provide service** -- is **consistent with this identity-harvesting behaviour**.
 
 ---
 
