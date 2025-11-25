@@ -54,6 +54,44 @@ The following frames are LTE control messages (NAS-EPS over GSMTAP) between my h
 | 108896      | 2025-11-24T15:06:25.064265000+0800       | 1763967985.064265000   | 0             | eth:ethertype:ip:udp:gsmtap:nas-eps |
 
 
+`$ tshark -r extracted/20251124a-PH-QCTY_1763879463.pcap -Y 'frame.number == 108896' -O nas-eps,lte-rrc,lte-rrc.bcch.bch,lte-rrc.bcch.dl-sch -V`
+
+### Frame 108896 (summary)
+
+- **Frame number:** 108896  
+- **Packet size:** 61 bytes on wire (488 bits), 61 bytes captured (488 bits)  
+
+### Protocol stack
+
+1. **Ethernet II**  
+   - **Source MAC:** `00:00:00:00:00:00`  
+   - **Destination MAC:** `00:00:00:00:00:00`  
+
+2. **IP (IPv4)**  
+   - **Source IP:** `127.0.0.1` (localhost)  
+   - **Destination IP:** `127.0.0.1` (localhost)  
+
+3. **UDP**  
+   - **Source port:** `13337`  
+   - **Destination port:** `4729` (`gsmtap`)  
+
+4. **GSMTAP Header**  
+   - **ARFCN:** `0` (Downlink)  
+   - **Timeslot (TS):** `0`  
+   - **Channel:** `UNKNOWN (0)`  
+
+5. **Non-Access Stratum (NAS) PDU – EPS Mobility Management**
+
+   - **Security header type:**  
+     - `0000` = **Plain NAS message, not security protected**  
+   - **Protocol discriminator:**  
+     - `0111` = **EPS mobility management messages** (`0x7`)  
+   - **NAS EMM message type:**  
+     - **Attach reject** (`0x44`)  
+   - **EMM cause:**  
+     - **Cause 15 – “No Suitable Cells In tracking area”**
+
+
    - The end result:  
      - the device has already disclosed its permanent identity,  
      - **but is denied service** and told there are “no suitable cells” in that area, even though signal clearly exists (because these messages are exchanged).
